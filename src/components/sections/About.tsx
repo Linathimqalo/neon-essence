@@ -30,7 +30,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 relative">
+    <section id="about" className="py-20 relative circuit-lines">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
@@ -45,7 +45,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
-            <div className="glass p-8 rounded-2xl glow-primary">
+            <div className="glass p-8 rounded-2xl glow-primary tech-glow">
               <h3 className="text-2xl font-semibold text-foreground mb-4">
                 My Journey
               </h3>
@@ -63,11 +63,11 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50">
+              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow">
                 <div className="text-3xl font-bold text-primary mb-2">50+</div>
                 <div className="text-muted-foreground">Projects Completed</div>
               </div>
-              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50">
+              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow">
                 <div className="text-3xl font-bold text-secondary mb-2">5+</div>
                 <div className="text-muted-foreground">Years Experience</div>
               </div>
@@ -81,7 +81,7 @@ const About = () => {
               return (
                 <Card 
                   key={skill.title}
-                  className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover"
+                  className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader className="pb-3">

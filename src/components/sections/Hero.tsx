@@ -18,19 +18,30 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden circuit-bg">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       />
-      <div className="absolute inset-0 bg-background/80" />
+      <div className="absolute inset-0 bg-background/85" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-secondary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
         <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
+
+      {/* Fractal Flower Animation Container */}
+      <div className="fractal-container">
+        {/* This is where your fractal flower animation will go */}
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="text-primary/30 text-center">
+            <div className="text-sm font-mono mb-2">FRACTAL_FLOWER.JS</div>
+            <div className="w-16 h-16 border-2 border-primary/30 rounded-full animate-pulse mx-auto"></div>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
@@ -43,10 +54,10 @@ const Hero = () => {
                 Alex Chen
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground font-light">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground font-light tracking-wide">
               Full Stack Developer & Tech Innovator
             </p>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-mono">
               Crafting digital experiences with cutting-edge technologies. 
               Specializing in React, Node.js, and cloud architectures.
             </p>
@@ -55,7 +66,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               onClick={scrollToPortfolio}
-              className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary-hover px-8 py-6 text-lg font-semibold rounded-xl"
+              className="bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary-hover px-8 py-6 text-lg font-semibold rounded-xl tech-glow transition-all duration-300"
             >
               View My Work
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -63,8 +74,8 @@ const Hero = () => {
             
             <Button 
               onClick={scrollToContact}
-              variant="outline" 
-              className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-6 text-lg font-semibold rounded-xl"
+              variant="outline"
+              className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-6 text-lg font-semibold rounded-xl tech-glow transition-all duration-300"
             >
               Get In Touch
               <Mail className="ml-2 h-5 w-5" />
@@ -73,13 +84,13 @@ const Hero = () => {
 
           {/* Social Links */}
           <div className="flex items-center justify-center space-x-6">
-            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover">
+            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover tech-glow transition-all duration-300">
               <Github className="h-6 w-6" />
             </Button>
-            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover">
+            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover tech-glow transition-all duration-300">
               <Linkedin className="h-6 w-6" />
             </Button>
-            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover">
+            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-primary glow-primary-hover tech-glow transition-all duration-300">
               <Download className="h-6 w-6" />
             </Button>
           </div>
@@ -88,7 +99,7 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
+        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center tech-glow">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
         </div>
       </div>

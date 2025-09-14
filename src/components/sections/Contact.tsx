@@ -52,7 +52,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/5">
+    <section id="contact" className="py-20 bg-muted/5 circuit-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
@@ -80,7 +80,7 @@ const Contact = () => {
               {contactInfo.map((info) => {
                 const Icon = info.icon;
                 return (
-                  <Card key={info.label} className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover">
+                  <Card key={info.label} className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center glow-primary">
@@ -113,7 +113,7 @@ const Contact = () => {
                       key={social.label}
                       variant="outline"
                       size="lg"
-                      className="border-primary/50 text-primary hover:bg-primary/10 glow-primary-hover"
+                      className="border-primary/50 text-primary hover:bg-primary/10 glow-primary-hover tech-glow"
                     >
                       <Icon className="h-5 w-5" />
                     </Button>
@@ -124,7 +124,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-gradient-card border-border/50 glow-primary">
+          <Card className="bg-gradient-card border-border/50 glow-primary tech-glow">
             <CardHeader>
               <CardTitle className="text-foreground">Send Message</CardTitle>
               <CardDescription className="text-muted-foreground">
@@ -140,7 +140,7 @@ const Contact = () => {
                     </label>
                     <Input 
                       placeholder="John"
-                      className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover"
+                      className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                       required
                     />
                   </div>
@@ -150,7 +150,7 @@ const Contact = () => {
                     </label>
                     <Input 
                       placeholder="Doe"
-                      className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover"
+                      className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                       required
                     />
                   </div>
@@ -163,7 +163,7 @@ const Contact = () => {
                   <Input 
                     type="email"
                     placeholder="john@example.com"
-                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover"
+                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                     required
                   />
                 </div>
@@ -174,7 +174,7 @@ const Contact = () => {
                   </label>
                   <Input 
                     placeholder="Project Discussion"
-                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover"
+                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                     required
                   />
                 </div>
@@ -186,7 +186,7 @@ const Contact = () => {
                   <Textarea 
                     placeholder="Tell me about your project..."
                     rows={4}
-                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover resize-none"
+                    className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover resize-none tech-glow"
                     required
                   />
                 </div>
@@ -194,7 +194,7 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary-hover"
+                  className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary-hover tech-glow"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center">

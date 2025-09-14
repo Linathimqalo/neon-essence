@@ -187,3 +187,61 @@ All colors MUST be HSL.
   from { box-shadow: var(--shadow-glow); }
   to { box-shadow: var(--shadow-glow-hover); }
 }
+
+/* Circuit Pattern Background */
+.circuit-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, hsl(195 100% 50% / 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, hsl(280 100% 70% / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(195 100% 50% / 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, hsl(280 100% 70% / 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+  background-position: 0 0, 25px 25px, 0 0, 0 0;
+}
+
+.circuit-lines {
+  background-image: 
+    linear-gradient(90deg, hsl(195 100% 50% / 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, hsl(195 100% 50% / 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Fractal Animation Container */
+.fractal-container {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .fractal-container {
+    right: 5%;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Enhanced Glow Effects */
+.tech-glow {
+  position: relative;
+}
+
+.tech-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, hsl(195 100% 50% / 0.3), hsl(280 100% 70% / 0.3), hsl(195 100% 50% / 0.3));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-glow:hover::before {
+  opacity: 1;
+}

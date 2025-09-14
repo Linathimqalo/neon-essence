@@ -45,7 +45,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-muted/5">
+    <section id="experience" className="py-20 bg-muted/5 circuit-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
@@ -68,7 +68,7 @@ const Experience = () => {
                 
                 {/* Content */}
                 <div className="ml-20 w-full">
-                  <Card className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover">
+                  <Card className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
                     <CardHeader>
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-2">
                         <CardTitle className="text-xl text-foreground">
@@ -109,7 +109,7 @@ const Experience = () => {
                         {experience.technologies.map((tech) => (
                           <span 
                             key={tech}
-                            className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full border border-primary/30"
+                            className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full border border-primary/30 tech-glow"
                           >
                             {tech}
                           </span>
