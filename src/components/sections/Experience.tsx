@@ -1,4 +1,5 @@
 import { MapPin, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Experience = () => {
@@ -47,27 +48,51 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 bg-muted/5 circuit-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
             Experience
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A journey through impactful roles where I've contributed to building exceptional digital products.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-primary" />
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-primary origin-top"
+          />
 
           <div className="space-y-12">
             {experiences.map((experience, index) => (
               <div key={experience.title} className="relative flex items-start">
                 {/* Timeline Dot */}
-                <div className="absolute left-6 w-4 h-4 bg-primary rounded-full glow-primary z-10" />
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="absolute left-6 w-4 h-4 bg-primary rounded-full glow-primary z-10"
+                />
                 
                 {/* Content */}
-                <div className="ml-20 w-full">
+                <motion.div 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 + 0.1 }}
+                  viewport={{ once: true }}
+                  className="ml-20 w-full"
+                >
                   <Card className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
                     <CardHeader>
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-2">
@@ -117,7 +142,7 @@ const Experience = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </div>
+                </motion.div>
               </div>
             ))}
           </div>

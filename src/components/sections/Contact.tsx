@@ -1,27 +1,45 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useForm } from '@formspree/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import EncryptedText from '../EncryptedText';
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  const [state, handleSubmit] = useForm("xdkogqko"); // Replace with your Formspree form ID
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+    await handleSubmit(e);
+    if (state.succeeded) {
+      setShowSuccess(true);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: ''
       });
-    }, 2000);
+      setTimeout(() => setShowSuccess(false), 5000);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const contactInfo = [
@@ -54,18 +72,30 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-muted/5 circuit-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
             Get In Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to collaborate? Let's discuss your next project and bring your ideas to life.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">Let's Connect</h3>
               <p className="text-muted-foreground leading-relaxed mb-8">
@@ -80,7 +110,14 @@ const Contact = () => {
               {contactInfo.map((info) => {
                 const Icon = info.icon;
                 return (
-                  <Card key={info.label} className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
+                  <motion.div
+                    key={info.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center glow-primary">
@@ -98,12 +135,18 @@ const Contact = () => {
                       </div>
                     </CardContent>
                   </Card>
+                  </motion.div>
                 );
               })}
             </div>
 
             {/* Social Links */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
               <h4 className="font-semibold text-foreground mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => {
@@ -120,11 +163,47 @@ const Contact = () => {
                   );
                 })}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Contact Form */}
-          <Card className="bg-gradient-card border-border/50 glow-primary tech-glow">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="bg-gradient-card border-border/50 glow-primary tech-glow relative">
+              {showSuccess && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="absolute inset-0 bg-background/95 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg"
+                >
+                  <div className="text-center space-y-4">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.2, type: "spring" }}
+                      className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto glow-primary"
+                    >
+                      <Send className="h-8 w-8 text-primary" />
+                    </motion.div>
+                    <EncryptedText 
+                      text="MESSAGE_TRANSMITTED_SUCCESSFULLY"
+                      isVisible={showSuccess}
+                    />
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 }}
+                      className="text-muted-foreground"
+                    >
+                      Thank you for reaching out. I'll get back to you soon.
+                    </motion.p>
+                  </div>
+                </motion.div>
+              )}
             <CardHeader>
               <CardTitle className="text-foreground">Send Message</CardTitle>
               <CardDescription className="text-muted-foreground">
@@ -132,7 +211,7 @@ const Contact = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={onSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">
@@ -140,6 +219,9 @@ const Contact = () => {
                     </label>
                     <Input 
                       placeholder="John"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                       required
                     />
@@ -150,6 +232,9 @@ const Contact = () => {
                     </label>
                     <Input 
                       placeholder="Doe"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                       required
                     />
@@ -163,6 +248,9 @@ const Contact = () => {
                   <Input 
                     type="email"
                     placeholder="john@example.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                     required
                   />
@@ -174,6 +262,9 @@ const Contact = () => {
                   </label>
                   <Input 
                     placeholder="Project Discussion"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
                     className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover tech-glow"
                     required
                   />
@@ -186,6 +277,9 @@ const Contact = () => {
                   <Textarea 
                     placeholder="Tell me about your project..."
                     rows={4}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     className="bg-background/50 border-border/50 focus:border-primary glow-primary-hover resize-none tech-glow"
                     required
                   />
@@ -193,10 +287,10 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
                   className="w-full bg-gradient-primary text-primary-foreground hover:opacity-90 glow-primary-hover tech-glow"
                 >
-                  {isSubmitting ? (
+                  {state.submitting ? (
                     <div className="flex items-center">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                       Sending...
@@ -211,6 +305,7 @@ const Contact = () => {
               </form>
             </CardContent>
           </Card>
+          </motion.div>
         </div>
       </div>
     </section>

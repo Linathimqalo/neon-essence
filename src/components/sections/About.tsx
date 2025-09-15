@@ -1,4 +1,5 @@
 import { Code, Zap, Users, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const About = () => {
@@ -32,7 +33,13 @@ const About = () => {
   return (
     <section id="about" className="py-20 relative circuit-lines">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
             About Me
           </h2>
@@ -40,12 +47,24 @@ const About = () => {
             Passionate developer with 5+ years of experience building scalable web applications 
             and leading cross-functional teams.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6">
-            <div className="glass p-8 rounded-2xl glow-primary tech-glow">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="glass p-8 rounded-2xl glow-primary tech-glow"
+            >
               <h3 className="text-2xl font-semibold text-foreground mb-4">
                 My Journey
               </h3>
@@ -60,30 +79,51 @@ const About = () => {
                 to open-source projects, or sharing knowledge with the developer community 
                 through blogs and workshops.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow"
+              >
                 <div className="text-3xl font-bold text-primary mb-2">50+</div>
                 <div className="text-muted-foreground">Projects Completed</div>
-              </div>
-              <div className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-gradient-card p-6 rounded-xl text-center border border-border/50 tech-glow"
+              >
                 <div className="text-3xl font-bold text-secondary mb-2">5+</div>
                 <div className="text-muted-foreground">Years Experience</div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Content - Skills */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
             {skills.map((skill, index) => {
               const Icon = skill.icon;
               return (
-                <Card 
+                <motion.div
                   key={skill.title}
-                  className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
+                  <Card className="bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
                   <CardHeader className="pb-3">
                     <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-3 glow-primary">
                       <Icon className="h-6 w-6 text-primary" />
@@ -104,9 +144,10 @@ const About = () => {
                     </ul>
                   </CardContent>
                 </Card>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

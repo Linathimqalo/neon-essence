@@ -1,6 +1,8 @@
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import AnimatedCircuitBackground from '../AnimatedCircuitBackground';
 
 const Portfolio = () => {
   const projects = [
@@ -64,23 +66,48 @@ const Portfolio = () => {
   const otherProjects = projects.filter(project => !project.featured);
 
   return (
-    <section id="portfolio" className="py-20 circuit-lines">
+    <section id="portfolio" className="py-20 circuit-lines relative">
+      <AnimatedCircuitBackground />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
             Portfolio
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             A collection of projects that showcase my skills and passion for creating innovative solutions.
           </p>
-        </div>
+        </motion.div>
 
         {/* Featured Projects */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-foreground mb-8">Featured Projects</h3>
+          <motion.h3 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold text-foreground mb-8"
+          >
+            Featured Projects
+          </motion.h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
-              <Card key={project.title} className="group overflow-hidden bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Card className="group overflow-hidden bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow relative">
+                  <div className="absolute inset-0 opacity-20">
+                    <AnimatedCircuitBackground />
+                  </div>
                 <div className="relative overflow-hidden">
                   <img 
                     src={project.image}
@@ -128,16 +155,35 @@ const Portfolio = () => {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Other Projects */}
         <div>
-          <h3 className="text-2xl font-bold text-foreground mb-8">Other Projects</h3>
+          <motion.h3 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold text-foreground mb-8"
+          >
+            Other Projects
+          </motion.h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherProjects.map((project, index) => (
-              <Card key={project.title} className="group bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow">
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="group bg-gradient-card border-border/50 hover:border-primary/50 transition-all duration-300 glow-primary-hover tech-glow relative">
+                  <div className="absolute inset-0 opacity-10">
+                    <AnimatedCircuitBackground />
+                  </div>
                 <div className="relative overflow-hidden">
                   <img 
                     src={project.image}
@@ -180,17 +226,24 @@ const Portfolio = () => {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
           <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-3 tech-glow">
             View All Projects on GitHub
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
